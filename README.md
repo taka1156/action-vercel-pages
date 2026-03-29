@@ -58,13 +58,15 @@ The concept is similar to using actions to create a `gh-pages` branch for deploy
 
 ## config
 
-| **Option Name**     | **Description**                | **Required** | **Default Value**                |
-|---------------------|--------------------------------|--------------|----------------------------------|
-| `branch`           | Branch name for deployment    | Not required | `'vercel'`                |
-| `git_name`         | Git `user.name` for testing   | Not required | `'GitHub Actions'`               |
-| `git_email`        | Git `user.email` for testing  | Not required | `'actions@github.com'`           |
-| `commit_message`   | Commit message for testing    | Not required | `'Add files for Vercel deployment at $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')'` |
+| **Option Name**     | **Description**                                                    | **Required** | **Default Value**                |
+|---------------------|--------------------------------------------------------------------|--------------|----------------------------------|
+| `branch`           | Branch name for deployment                                        | Not required | `'vercel'`                       |
+| `git_name`         | Git `user.name` to set                                            | Not required | `'GitHub Actions'`               |
+| `git_email`        | Git `user.email` to set                                           | Not required | `'actions@github.com'`           |
+| `commit_message`   | Commit message to use (auto-generated if empty)                   | Not required | `'Add files for Vercel deployment at $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')'` |
+| `dry_run`          | Avoid getting stuck when pushing with act                         | Not required | `'false'`                        |
+| `root_path`        | Working directory path containing the `.vercelkeep` file          | Not required | `'.'`                            |
 
 
 ## TODO
-- [ ] Migrate testing and operation verification environments to Act and Devcontainer.
+- [ ] Migrate testing and operation verification environments to [actrun](https://github.com/mizchi/actrun) and Devcontainer.
