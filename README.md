@@ -1,5 +1,18 @@
 # action-vercel-pages(WIP)
 
+## ⚠️ Disclaimer
+
+> **Use at your own risk.**
+>
+> This action **permanently deletes files** from your repository that are not listed in `.vercelkeep`. Deleted files **cannot be recovered** through this action.
+>
+> - Always verify the contents of `.vercelkeep` before running this action.
+> - It is strongly recommended to use `dry_run: "true"` first to preview which files will be removed.
+> - Ensure your working branch is backed up or that important files are committed elsewhere before use.
+> - The author and contributors of this action are **not liable for any data loss**, corruption, or damages resulting from the use of this action, whether caused by misconfiguration, bugs, or any other reason.
+>
+> By using this action, you agree to take full responsibility for its effects on your repository.
+
 ## Workflow for Deployment to Vercel
 
 The concept is similar to using actions to create a `gh-pages` branch for deployment. Here, actions are used to create a `vercel` branch, which is then set as the production branch in Vercel settings to enable a comparable operational setup.
@@ -11,7 +24,7 @@ The concept is similar to using actions to create a `gh-pages` branch for deploy
    - Files not in Git but listed in `.vercelkeep` (e.g., files generated during the build process)  
    　→ **Add to Git as target files for the next step into the `vercel` branch**.  
    - Files in Git but not in `.vercelkeep`  
-   　→ **Remove from Git and delete them** (to avoid cluttering Vercel with unnecessary files).
+   　→ **Remove from Git and delete them** (to avoid cluttering Vercel with unnecessary files). **⚠️ This deletion is permanent and irreversible.**
 
 2. Commit and push changes to the `vercel` branch.
 
