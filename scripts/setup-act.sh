@@ -1,4 +1,4 @@
-if [! -f 'bin/act']; then
+if [ ! -f 'bin/act' ]; then
   curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 fi
 

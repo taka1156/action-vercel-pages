@@ -1,10 +1,12 @@
+#!/bin/bash
 
 # --- env ---
-GIT_NAME=${2:-"GitHub Actions"}
-GIT_EMAIL=${3:-"actions@github.com"}
-COMMIT_MESSAGE=${4:-"Initial commit for testing"}
+GIT_NAME=${1:-"GitHub Actions"}
+GIT_EMAIL=${2:-"actions@github.com"}
+COMMIT_MESSAGE=${3:-"Initial commit for testing"}
 
 # --- setup ---
+mkdir -p test-vercelkeep && cd test-vercelkeep
 git init
 
 # --- Git Config ---

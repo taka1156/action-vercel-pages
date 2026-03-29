@@ -18,7 +18,7 @@ inputs:
   commit_message:
     description: 'Commit message to use'
     required: false
-    default: "Add files for Vercel deployment at $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
+    default: ''
   dry_run:
     description: 'An option to avoid getting stuck when pushing with act.'
     required: false
@@ -39,16 +39,18 @@ runs:
     - name: Configure Git
       shell: bash
       run: |
-        git config --global user.email "${{ inputs.git_name }}"
+        git config --global user.name "${{ inputs.git_name }}"
         git config --global user.email "${{ inputs.git_email }}"
 
     - name: Commit and push to Vercel branch
       shell: bash
       run: |
+        COMMIT_MESSAGE="${{ inputs.commit_message }}"
+        [ -z "$COMMIT_MESSAGE" ] && COMMIT_MESSAGE="Add files for Vercel deployment at $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
         git fetch origin ${{ inputs.branch }} || echo "No existing branch."
         git checkout -b ${{ inputs.branch }} || git checkout ${{ inputs.branch }}
         xargs -a .vercelkeep -I {} git add {}
-        git commit -m "${{ inputs.commit_message }}"
+        git commit -m "$COMMIT_MESSAGE"
 
         if [ "${{ inputs.dry_run }}" = "false" ]; then
           echo "Executing actual git push..."
