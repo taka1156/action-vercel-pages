@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y git bash
 WORKDIR /app
 
 COPY test ./test
-ADD .github/actions/clean-unwanted-files.sh ./test
+ADD src/clean-unwanted-files.sh ./test
 
 RUN chmod -R +x ./test/shell
 

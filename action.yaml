@@ -36,8 +36,8 @@ runs:
       working-directory: ${{ inputs.root_path }}
       run: |
         ls -la
-        chmod +x ${{ github.workspace }}/.github/actions/clean-unwanted-files.sh
-        bash ${{ github.workspace }}/.github/actions/clean-unwanted-files.sh
+        chmod +x ${{ github.workspace }}/src/clean-unwanted-files.sh
+        bash ${{ github.workspace }}/src/clean-unwanted-files.sh
 
     - name: Configure Git
       shell: bash
