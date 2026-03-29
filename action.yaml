@@ -2,6 +2,10 @@ name: Reusable Vercel Deploy Workflow
 author: "taka1156"
 description: A composite action for deploying to Vercel via GitHub Actions.
 
+branding:
+  icon: box
+  color: gray-dark
+
 inputs:
   branch:
     description: 'Branch name to deploy'
