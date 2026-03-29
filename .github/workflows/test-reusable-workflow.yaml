@@ -33,3 +33,4 @@ jobs:
           git_email: "test@example.com"
           commit_message: "Test Commit for Vercel Deployment"
           dry_run: "true"
+          root_path: ${{ env.root_path }}

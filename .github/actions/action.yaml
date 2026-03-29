@@ -23,25 +23,32 @@ inputs:
     description: 'An option to avoid getting stuck when pushing with act.'
     required: false
     default: "false"
+  root_path:
+    description: 'Working directory path containing the .vercelkeep file'
+    required: false
+    default: '.'
 
 runs:
   using: "composite"
   steps:
     - name: Keep only Vercel deploy files
       shell: bash
+      working-directory: ${{ inputs.root_path }}
       run: |
         ls -la
-        chmod +x ./.github/actions/clean-unwanted-files.sh
-        bash ./.github/actions/clean-unwanted-files.sh
+        chmod +x ${{ github.workspace }}/.github/actions/clean-unwanted-files.sh
+        bash ${{ github.workspace }}/.github/actions/clean-unwanted-files.sh
 
     - name: Configure Git
       shell: bash
+      working-directory: ${{ inputs.root_path }}
       run: |
         git config --global user.name "${{ inputs.git_name }}"
         git config --global user.email "${{ inputs.git_email }}"
 
     - name: Commit and push to Vercel branch
       shell: bash
+      working-directory: ${{ inputs.root_path }}
       run: |
         COMMIT_MESSAGE="${{ inputs.commit_message }}"
         [ -z "$COMMIT_MESSAGE" ] && COMMIT_MESSAGE="Add files for Vercel deployment at $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
